@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins", sans-serif;
+}
+
+body {
+  --dark-color: #1b1c1e;
+  --light-color: #fefdfb;
+  --gray-color: #888888;
+  --accent-color: #e291b0;
+  --dark-overlay: 0.8;
+  --light-overlay: 0.2;
+  --dark-rgb: 0;
+  --light-rgb: 200;
+  overflow: auto;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.background {
+  position: fixed;
+  z-index: -2;
+  min-height: 100vh;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+}
+.background img {
+  min-height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: relative;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.35);
+}
+table thead tr {
+  background-color: var(--accent-color);
+  color: #ffffff;
+  text-align: left;
+}
+table th,
+table td {
+  padding: 12px 15px;
+}
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+table tbody tr:nth-of-type(odd) {
+  background-color: white;
+}
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.main-page h1 {
+  color: var(--light-color);
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.main-page .main-table {
+  margin: 1rem auto;
+}

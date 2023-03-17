@@ -39,6 +39,46 @@ img {
   position: relative;
 }
 
+nav {
+  margin-bottom: 1.5rem;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: var(--light-color);
+}
+nav ul li {
+  list-style: none;
+}
+nav ul li:nth-child(1) {
+  margin-right: auto;
+  font-size: 1.5rem;
+}
+nav ul li:nth-child(1) a {
+  font-weight: 700;
+}
+nav ul li:nth-child(1) a:hover {
+  background-color: transparent;
+}
+nav ul li:nth-last-child(1) {
+  margin-left: 3rem;
+}
+nav ul li:nth-last-child(1) a {
+  background-color: var(--accent-color);
+}
+nav ul li a {
+  color: var(--light-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+nav ul li a:hover {
+  background-color: var(--accent-color);
+}
+
 table {
   border-collapse: collapse;
   margin: 25px 0;
@@ -65,7 +105,7 @@ table tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
 }
 table tbody tr:last-of-type {
-  border-bottom: 2px solid #009879;
+  border-bottom: 2px solid var(--accent-color);
 }
 
 .main-page .top {
@@ -78,8 +118,8 @@ table tbody tr:last-of-type {
 }
 .main-page .top .refresh-button {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   top: 50%;
   transform: translateY(-50%);
   background-color: var(--accent-color);
@@ -89,6 +129,7 @@ table tbody tr:last-of-type {
 }
 .main-page .top .refresh-button i {
   color: var(--light-color);
+  font-size: 1.5rem;
 }
 .main-page .main-table {
   margin: 1rem auto;

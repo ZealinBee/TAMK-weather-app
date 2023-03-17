@@ -1,8 +1,11 @@
 const mainTableBody = document.querySelector(".main-table-body");
 const refreshButton = document.querySelector(".refresh-button");
+const infoPageButton = document.querySelector(".info-page-button");
+const mainPage = document.querySelector(".main-page");  
 
 refreshButton.addEventListener("click", loadMainWeather);
 addEventListener("load", loadMainWeather);
+infoPageButton.addEventListener("click", loadInfoPage)
 
 function loadMainWeather() {
   mainTableBody.innerHTML = "";
@@ -36,4 +39,8 @@ function loadMainWeather() {
         mainTableBody.innerHTML += tr;
       });
     });
+}
+
+function loadInfoPage() {
+  mainPage.classList.add("hidden");
 }

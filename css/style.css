@@ -68,11 +68,32 @@ table tbody tr:last-of-type {
   border-bottom: 2px solid #009879;
 }
 
-.main-page h1 {
+.main-page .top {
+  position: relative;
+  margin-top: 1rem;
+}
+.main-page .top h1 {
   color: var(--light-color);
   text-align: center;
-  margin-top: 1.5rem;
+}
+.main-page .top .refresh-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 0.5rem;
+  right: calc((100% - 700px) / 2);
+}
+.main-page .top .refresh-button i {
+  color: var(--light-color);
 }
 .main-page .main-table {
   margin: 1rem auto;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }

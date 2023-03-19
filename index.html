@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
 
     <title>TAMK Weather App</title>
     <link
@@ -21,16 +24,16 @@
     </div>
     <nav>
       <ul>
-        <li><a href="#">TAMK Weather App</a></li>
-        <li><a href="#">Main Page</a></li>
-        <li><a href="#">Temperature</a></li>
-        <li><a href="#">Wind Speed</a></li>
-        <li><a href="#">Others</a></li>
-        <li><a href="#" class="info-page-button">Info</a></li>
+        <li onclick="showPage('main-page')">TAMK Weather App</li>
+        <li onclick="showPage('main-page')">Main Page</li>
+        <li onclick="showPage('temperature')">Temperature</li>
+        <li onclick="showPage('wind-speed')">Wind Speed</li>
+        <li onclick="showPage('')">Others</li>
+        <li onclick="showPage('authors-info')">Author's Info</li>
       </ul>
     </nav>
 
-    <div class="main-page">
+    <div class="page main-page">
       <div class="top">
         <h1>Last 30 Measurements</h1>
         <button class="refresh-button">
@@ -50,7 +53,48 @@
         </thead>
         <tbody class="main-table-body"></tbody>
       </table>
-      
     </div>
+
+    <div class="page temperature" style="display: none">
+      <div class="top">
+        <h1>Last 20 Temperature Measurements</h1>
+        <button class="refresh-temp-button">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+      </div>
+      <h1>
+        <table class="temperature-table">
+          <thead>
+            <th>No.</th>
+            <th>Measurement Day</th>
+            <th>Measurement Time</th>
+            <th>Measurement Value (C°)</th>
+          </thead>
+          <tbody class="temperature-table-body"></tbody>
+        </table>
+      </h1>
+    </div>
+    <div class="page wind-speed" style="display: none">
+      <h1>Rawr</h1>
+    </div>
+    <div class="page authors-info" style="display: none">
+      <div class="text-part">
+        <h1>HI THERE!</h1>
+        <h2>This is a TAMK School project</h2>
+        <div class="author-paragraphs">
+          <p>Author: <span>Zhiyuan Liu</span></p>
+          <p>Email Address: <span>zhiyuan.liu@tuni.fi</span></p>
+          <p>Address: <span>Tampere, Finland</span></p>
+        </div>
+      </div>
+      <div class="image-part">
+        <img src="./assets/author.png" alt="" />
+      </div>
+      <div class="rights">
+        <p>Background image: <span></span></p>
+        <p>Me in a suit: <span>Myself</span></p>
+      </div>
+    </div>
+
   </body>
 </html>

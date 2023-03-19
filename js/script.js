@@ -1,13 +1,13 @@
-const mainTableBody = document.querySelector(".main-table-body");
 const refreshButton = document.querySelector(".refresh-button");
 const infoPageButton = document.querySelector(".info-page-button");
-const mainPage = document.querySelector(".main-page");  
-
+const mainTableBody = document.querySelector(".main-table-body");
+const temperatureTableBody = document.querySelector(".temperature-table-body");
 refreshButton.addEventListener("click", loadMainWeather);
 addEventListener("load", loadMainWeather);
-infoPageButton.addEventListener("click", loadInfoPage)
 
 function loadMainWeather() {
+  const mainTableBody = document.querySelector(".main-table-body");
+
   mainTableBody.innerHTML = "";
   fetch("http://webapi19sa-1.course.tamk.cloud/v1/weather")
     .then((response) => response.json())
@@ -19,7 +19,6 @@ function loadMainWeather() {
         const time = item.date_time.slice(11, 19);
         let type = Object.keys(item.data).join();
         const value = Object.values(item.data);
-        console.log(type);
         index += 1;
         if (index < 10) index = `0${index}`;
         if (type === "Air_pres_1") {
@@ -41,6 +40,36 @@ function loadMainWeather() {
     });
 }
 
-function loadInfoPage() {
-  mainPage.classList.add("hidden");
+function showPage(page) {
+  const pages = document.querySelectorAll(".page");
+  pages.forEach((item) => {
+    item.style.display = "none";
+  });
+  const selectedPage = document.querySelector(`.${page}`);
+  selectedPage.style.display = "block";
+  if (page === "temperature") {
+    loadTemperature();
+  }
+}
+
+function loadTemperature() {
+  temperatureTableBody.innerHTML = "";
+  fetch("http://webapi19sa-1.course.tamk.cloud/v1/weather/temperature")
+    .then((response) => response.json())
+    .then((data) => {
+      data.map((item, index) => {
+        const date = item.date_time.slice(0, 10);
+        const time = item.date_time.slice(11, 19);
+        const temperature = Object.values(item.temperature);
+        index += 1;
+        if (index < 10) index = `0${index}`;
+        const tr = `
+        <td>${index}</td>
+        <td>${date}</td>
+        <td>${time}</td>
+        <td>${temperature}</td>
+        `;
+        temperatureTableBody.innerHTML += tr;
+      });
+    });
 }

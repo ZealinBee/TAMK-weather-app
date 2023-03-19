@@ -16,11 +16,12 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="./js/script.js" defer></script>
   </head>
   <body>
     <div class="background">
-      <img src="./assets/background.jpg" alt="" />
+      <img src="./assets/background-overlay.webp" alt="" />
     </div>
     <nav>
       <ul>
@@ -58,29 +59,51 @@
     <div class="page temperature" style="display: none">
       <div class="top">
         <h1>Last 20 Temperature Measurements</h1>
-        <button class="refresh-temp-button">
+        <button class="refresh-button">
           <i class="fa-solid fa-arrows-rotate"></i>
         </button>
       </div>
-      <h1>
-        <table class="temperature-table">
-          <thead>
-            <th>No.</th>
-            <th>Measurement Day</th>
-            <th>Measurement Time</th>
-            <th>Measurement Value (C°)</th>
-          </thead>
-          <tbody class="temperature-table-body"></tbody>
-        </table>
-      </h1>
+      <table class="temperature-table">
+        <thead>
+          <th>No.</th>
+          <th>Measurement Day</th>
+          <th>Measurement Time</th>
+          <th>Measurement Value (C°)</th>
+        </thead>
+        <tbody class="temperature-table-body"></tbody>
+      </table>
+      <div class="chart">
+        <canvas id="temperature-chart"></canvas>
+      </div>
     </div>
+
     <div class="page wind-speed" style="display: none">
-      <h1>Rawr</h1>
+      <div class="top">
+        <h1>Last 20 Wind Speed Measurements</h1>
+        <button class="refresh-button">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+      </div>
+      <table class="wind-speed-table">
+        <thead>
+          <th>No.</th>
+          <th>Measurement Day</th>
+          <th>Measurement Time</th>
+          <th>Measurement Value</th>
+        </thead>
+        <tbody class="wind-speed-table-body"></tbody>
+      </table>
+      <div class="chart">
+        <canvas id="wind-speed-chart"></canvas>
+      </div>
     </div>
     <div class="page authors-info" style="display: none">
       <div class="text-part">
         <h1>HI THERE!</h1>
-        <h2>This is a TAMK School project</h2>
+        <h2>
+          This is a <a href="https://www.tuni.fi/fi">TAMK</a> school project for
+          web development
+        </h2>
         <div class="author-paragraphs">
           <p>Author: <span>Zhiyuan Liu</span></p>
           <p>Email Address: <span>zhiyuan.liu@tuni.fi</span></p>
@@ -95,6 +118,5 @@
         <p>Me in a suit: <span>Myself</span></p>
       </div>
     </div>
-
   </body>
 </html>

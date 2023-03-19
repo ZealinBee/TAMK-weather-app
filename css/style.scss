@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 
-:root {
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +11,7 @@ body {
   --dark-color: #1b1c1e;
   --light-color: #fefdfb;
   --gray-color: #888888;
-  --accent-color: #e291b0;
+  --accent-color: rgb(226, 146, 177);
   --dark-overlay: 0.8;
   --light-overlay: 0.2;
   --dark-rgb: 0;
@@ -42,6 +39,17 @@ img {
     position: relative;
   }
 }
+
+.chart {
+  width:50%;
+  margin: 0 auto;
+  background-color: var(--light-color);
+  padding:0.5rem;
+  background-color: var(--dark-color);
+  margin-bottom:3rem;
+  margin-top:1rem;
+}
+
 
 nav {
   margin-bottom: 1.5rem;
@@ -86,6 +94,7 @@ table {
   font-size: 0.9em;
   min-width: 400px;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.35);
+  margin: 1rem auto;
 
   thead tr {
     background-color: var(--accent-color);
@@ -95,7 +104,8 @@ table {
 
   th,
   td {
-    padding: 12px 15px;
+    padding: 16px 20px;
+    padding-left:30px;
   }
 
   tbody tr {
@@ -114,40 +124,30 @@ table {
   }
 }
 
-.main-page {
-  .top {
-    position: relative;
-    margin-top: 1rem;
-
-    h1 {
-      color: var(--light-color);
-      text-align: center;
-    }
-
-    .refresh-button {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: var(--accent-color);
-      border: none;
-      border-radius: 0.5rem;
-      right: calc((100% - 700px) / 2);
-      i {
-        color: var(--light-color);
-        font-size: 1.5rem;
-      }
-    }
-  }
-
-  .main-table {
-    margin: 1rem auto;
-  }
+h1 {
+  color: var(--light-color);
+  text-align: center;
 }
 
-.capitalize {
-  text-transform: capitalize;
+.top {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.refresh-button {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 0.5rem;
+  right: calc((100% - 700px) / 2);
+  i {
+    color: var(--light-color);
+    font-size: 1.5rem;
+  }
 }
 
 .authors-info {
@@ -194,4 +194,18 @@ table {
     justify-content: center;
     margin-top:3rem;
   }
+
+  a {
+    color:rgb(144, 144, 218);
+  }
+}
+
+
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.bold {
+  font-weight: 700;
 }

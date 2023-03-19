@@ -10,7 +10,7 @@ body {
   --dark-color: #1b1c1e;
   --light-color: #fefdfb;
   --gray-color: #888888;
-  --accent-color: #e291b0;
+  --accent-color: rgb(226, 146, 177);
   --dark-overlay: 0.8;
   --light-overlay: 0.2;
   --dark-rgb: 0;
@@ -38,6 +38,16 @@ img {
   -o-object-fit: cover;
      object-fit: cover;
   position: relative;
+}
+
+.chart {
+  width: 50%;
+  margin: 0 auto;
+  background-color: var(--light-color);
+  padding: 0.5rem;
+  background-color: var(--dark-color);
+  margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 
 nav {
@@ -81,6 +91,7 @@ table {
   font-size: 0.9em;
   min-width: 400px;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.35);
+  margin: 1rem auto;
 }
 table thead tr {
   background-color: var(--accent-color);
@@ -89,7 +100,8 @@ table thead tr {
 }
 table th,
 table td {
-  padding: 12px 15px;
+  padding: 16px 20px;
+  padding-left: 30px;
 }
 table tbody tr {
   border-bottom: 1px solid #dddddd;
@@ -104,15 +116,17 @@ table tbody tr:last-of-type {
   border-bottom: 2px solid var(--accent-color);
 }
 
-.main-page .top {
-  position: relative;
-  margin-top: 1rem;
-}
-.main-page .top h1 {
+h1 {
   color: var(--light-color);
   text-align: center;
 }
-.main-page .top .refresh-button {
+
+.top {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.refresh-button {
   position: absolute;
   width: 40px;
   height: 40px;
@@ -123,16 +137,9 @@ table tbody tr:last-of-type {
   border-radius: 0.5rem;
   right: calc((100% - 700px) / 2);
 }
-.main-page .top .refresh-button i {
+.refresh-button i {
   color: var(--light-color);
   font-size: 1.5rem;
-}
-.main-page .main-table {
-  margin: 1rem auto;
-}
-
-.capitalize {
-  text-transform: capitalize;
 }
 
 .authors-info .text-part {
@@ -176,4 +183,15 @@ table tbody tr:last-of-type {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
+}
+.authors-info a {
+  color: rgb(144, 144, 218);
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.bold {
+  font-weight: 700;
 }

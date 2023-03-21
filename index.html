@@ -25,12 +25,21 @@
     </div>
     <nav>
       <ul>
-        <li onclick="showPage('main-page')">TAMK Weather App</li>
+        <li onclick="showPage('main-page')" class="logo">TAMK Weather App</li>
         <li onclick="showPage('main-page')">Main Page</li>
         <li onclick="showPage('temperature')">Temperature</li>
         <li onclick="showPage('wind-speed')">Wind Speed</li>
-        <li onclick="showPage('')">Others</li>
-        <li onclick="showPage('authors-info')">Author's Info</li>
+        <li class="dropdown">
+          Others
+          <ul class="dropdown-menu">
+            <li onclick="showPage('rain')">Rain</li>
+            <li onclick="showPage('wind-direction')">Wind Direction</li>
+            <li onclick="showPage('light')">Light</li>
+          </ul>
+        </li>
+        <li onclick="showPage('authors-info')" class="buttoned">
+          Author's Info
+        </li>
       </ul>
     </nav>
 
@@ -97,6 +106,67 @@
         <canvas id="wind-speed-chart"></canvas>
       </div>
     </div>
+    <div class="page rain" style="display: none">
+      <div class="top">
+        <h1>Last 20 Rain Measurements</h1>
+        <button class="refresh-button">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+      </div>
+      <table class="rain-table">
+        <thead>
+          <th>No.</th>
+          <th>Measurement Day</th>
+          <th>Measurement Time</th>
+          <th>Measurement Value</th>
+        </thead>
+        <tbody class="rain-table-body"></tbody>
+      </table>
+      <div class="chart">
+        <canvas id="rain-chart"></canvas>
+      </div>
+    </div>
+    <div class="page wind-direction" style="display: none">
+      <div class="top">
+        <h1>Last 20 Wind Dir Measurements</h1>
+        <button class="refresh-button">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+      </div>
+      <table class="wind-direction-table">
+        <thead>
+          <th>No.</th>
+          <th>Measurement Day</th>
+          <th>Measurement Time</th>
+          <th>Measurement Value</th>
+        </thead>
+        <tbody class="wind-direction-table-body"></tbody>
+      </table>
+      <div class="chart">
+        <canvas id="wind-direction-chart"></canvas>
+      </div>
+    </div>
+    <div class="page light" style="display: none">
+      <div class="top">
+        <h1>Last 20 Light Measurements</h1>
+        <button class="refresh-button">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+      </div>
+      <table class="light-table">
+        <thead>
+          <th>No.</th>
+          <th>Measurement Day</th>
+          <th>Measurement Time</th>
+          <th>Measurement Value</th>
+        </thead>
+        <tbody class="light-table-body"></tbody>
+      </table>
+      <div class="chart">
+        <canvas id="light-chart"></canvas>
+      </div>
+    </div>
+
     <div class="page authors-info" style="display: none">
       <div class="text-part">
         <h1>HI THERE!</h1>

@@ -1,12 +1,13 @@
-const refreshButton = document.querySelector(".refresh-button");
+const refreshButtons = document.querySelectorAll(".refresh-button");
 const infoPageButton = document.querySelector(".info-page-button");
 const mainTableBody = document.querySelector(".main-table-body");
 const temperatureTableBody = document.querySelector(".temperature-table-body");
 const windSpeedTableBody = document.querySelector(".wind-speed-table-body");
 const rainTableBody = document.querySelector(".rain-table-body");
-const windDirectionTableBody = document.querySelector(".wind-direction-table-body");
+const windDirectionTableBody = document.querySelector(
+  ".wind-direction-table-body"
+);
 const lightTableBody = document.querySelector(".light-table-body");
-refreshButton.addEventListener("click", loadMainWeather);
 addEventListener("load", loadMainWeather);
 
 const defaultChartOptions = {
@@ -83,10 +84,10 @@ function showPage(page) {
     loadWindSpeed();
   } else if (page === "rain") {
     loadRain();
-  } else if(page === "wind-direction"){
+  } else if (page === "wind-direction") {
     loadWindDirection();
-  } else if(page === "light") {
-    loadLight()
+  } else if (page === "light") {
+    loadLight();
   }
 }
 
@@ -122,7 +123,7 @@ function loadTemperature() {
           labels: labels,
           datasets: [
             {
-              label: "Temperature in Celsius",
+              label: "Temperature",
               data: dataset,
               backgroundColor: ["rgba(226, 146, 177, 0.5)"],
               borderColor: ["rgba(226, 146, 177, 0.8)"],
@@ -138,7 +139,7 @@ function loadWindSpeed() {
   windSpeedTableBody.innerHTML = "";
   const labels = [];
   const dataset = [];
-  fetch("http://webapi19sa-1.course.tamk.cloud/v1/weather/latest/wind_speed")
+  fetch("https://webapi19sa-1.course.tamk.cloud/v1/weather/wind_speed")
     .then((response) => response.json())
     .then((data) => {
       data.map((item, index) => {
@@ -222,7 +223,9 @@ async function loadWindDirection() {
   windDirectionTableBody.innerHTML = "";
   const labels = [];
   const dataset = [];
-  await fetch("https://webapi19sa-1.course.tamk.cloud/v1/weather/wind_direction")
+  await fetch(
+    "https://webapi19sa-1.course.tamk.cloud/v1/weather/wind_direction"
+  )
     .then((response) => response.json())
     .then((data) => {
       data.map((item, index) => {
@@ -302,3 +305,26 @@ function loadLight() {
     options: defaultChartOptions,
   });
 }
+
+refreshButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const refreshTarget = button.getAttribute("data-refresh");
+    switch (refreshTarget) {
+      case "main-table":
+        loadMainWeather();
+        break;
+      case "temperature-table":
+        loadTemperature();
+        break;
+      case "wind-speed-table":
+        loadWindSpeed();
+        break;
+      case "rain-table":
+        loadRain();
+        break;
+      case "wind-direction-table":
+        loadWindDirection();
+        break;
+    }
+  });
+});

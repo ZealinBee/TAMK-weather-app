@@ -90,17 +90,17 @@ nav {
         border-radius: 0.5rem;
         color: var(--dark-color);
         background-color: var(--light-color);
-        padding:0;
-        margin-right:2rem;
+        padding: 0;
+        margin-right: 2rem;
         &:hover {
-          z-index:5;
-          display:flex;
+          z-index: 5;
+          display: flex;
         }
         li {
-          width:100%;
+          width: 100%;
           border-radius: none;
-          font-size:0.9rem;
-          padding:0.75rem 1rem;
+          font-size: 0.9rem;
+          padding: 0.75rem 1rem;
           &:hover {
             background-color: var(--accent-color);
             color: var(--light-color);
@@ -118,7 +118,7 @@ table {
   min-width: 400px;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.35);
   margin: 1rem auto;
-
+// todo put radius here pls
   thead tr {
     background-color: var(--accent-color);
     color: #ffffff;
@@ -229,4 +229,23 @@ h1 {
 
 .bold {
   font-weight: 700;
+}
+
+select {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.25rem 1rem;
+  margin: 0 0.5rem;
+  position:absolute;
+  top:120px;
+  z-index: 100;
+  left: calc((100% - 950px) / 2);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
 }

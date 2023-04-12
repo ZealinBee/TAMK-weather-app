@@ -220,3 +220,22 @@ h1 {
 .bold {
   font-weight: 700;
 }
+
+select {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.25rem 1rem;
+  margin: 0 0.5rem;
+  position: absolute;
+  top: 120px;
+  z-index: 100;
+  left: calc((100% - 950px) / 2);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+select:focus {
+  outline: none;
+}

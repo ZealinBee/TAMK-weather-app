@@ -42,7 +42,13 @@
         </li>
       </ul>
     </nav>
-
+    <select name="main-table" id="table-filter" style="display:none">
+      <option value="now">Now</option>
+      <option value="24-hours">24 Hours</option>
+      <option value="48-hours">48 Hours</option>
+      <option value="72-hours">72 Hours</option>
+      <option value="1-week">1 Week</option>
+    </select>
     <div class="page main-page">
       <div class="top">
         <h1>Last 30 Measurements</h1>
@@ -51,7 +57,7 @@
         </button>
       </div>
 
-      <table class="main-table" >
+      <table class="main-table">
         <thead>
           <tr>
             <th>No.</th>
@@ -72,7 +78,7 @@
           <i class="fa-solid fa-arrows-rotate"></i>
         </button>
       </div>
-      <table class="temperature-table" >
+      <table class="temperature-table">
         <thead>
           <th>No.</th>
           <th>Measurement Day</th>

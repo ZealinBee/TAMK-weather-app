@@ -8,6 +8,14 @@ const windDirectionTableBody = document.querySelector(
   ".wind-direction-table-body"
 );
 const lightTableBody = document.querySelector(".light-table-body");
+let interval = "25";
+let currentPage = "main-page";
+let tempCanva
+let windSpeedCanva
+let rainCanva
+let windDirectionCanva
+let lightCanva
+
 addEventListener("load", loadMainWeather);
 
 const defaultChartOptions = {
@@ -73,11 +81,15 @@ function loadMainWeather() {
 
 function showPage(page) {
   const pages = document.querySelectorAll(".page");
+  const filter = document.querySelector("#table-filter");
+  
+  filter.style.display = "block";
   pages.forEach((item) => {
     item.style.display = "none";
   });
   const selectedPage = document.querySelector(`.${page}`);
   selectedPage.style.display = "block";
+  currentPage = page;
   if (page === "temperature") {
     loadTemperature();
   } else if (page === "wind-speed") {
@@ -88,6 +100,10 @@ function showPage(page) {
     loadWindDirection();
   } else if (page === "light") {
     loadLight();
+  } else if (page === "authors-info") {
+    filter.style.display = "none";
+  } else if (page === "main-page") {
+    filter.style.display = "none";
   }
 }
 
@@ -96,7 +112,9 @@ function loadTemperature() {
   const labels = [];
   const dataset = [];
 
-  fetch("http://webapi19sa-1.course.tamk.cloud/v1/weather/temperature")
+  fetch(
+    `http://webapi19sa-1.course.tamk.cloud/v1/weather/temperature/${interval}`
+  )
     .then((response) => response.json())
     .then((data) => {
       data.map((item, index) => {
@@ -115,9 +133,9 @@ function loadTemperature() {
         labels.push(time);
         dataset.push(temperature);
       });
-
-      const temperatureChart = document.getElementById("temperature-chart");
-      new Chart(temperatureChart, {
+      if(tempCanva) tempCanva.destroy()
+      let temperatureChart = document.getElementById("temperature-chart");
+      tempCanva = new Chart(temperatureChart, {
         type: "bar",
         data: {
           labels: labels,
@@ -139,7 +157,9 @@ function loadWindSpeed() {
   windSpeedTableBody.innerHTML = "";
   const labels = [];
   const dataset = [];
-  fetch("https://webapi19sa-1.course.tamk.cloud/v1/weather/wind_speed")
+  fetch(
+    `https://webapi19sa-1.course.tamk.cloud/v1/weather/wind_speed/${interval}`
+  )
     .then((response) => response.json())
     .then((data) => {
       data.map((item, index) => {
@@ -160,7 +180,8 @@ function loadWindSpeed() {
       });
     });
   const windSpeedChart = document.getElementById("wind-speed-chart");
-  new Chart(windSpeedChart, {
+  if(windSpeedCanva) windSpeedCanva.destroy()
+  windSpeedCanva = new Chart(windSpeedChart, {
     type: "bar",
     data: {
       labels: labels,
@@ -181,7 +202,7 @@ function loadRain() {
   rainTableBody.innerHTML = "";
   const labels = [];
   const dataset = [];
-  fetch("https://webapi19sa-1.course.tamk.cloud/v1/weather/rain")
+  fetch(`https://webapi19sa-1.course.tamk.cloud/v1/weather/rain/${interval}`)
     .then((response) => response.json())
     .then((data) => {
       data.map((item, index) => {
@@ -202,7 +223,8 @@ function loadRain() {
       });
     });
   const rainChart = document.getElementById("rain-chart");
-  new Chart(rainChart, {
+  if(rainCanva) rainCanva.destroy()
+  rainCanva = new Chart(rainChart, {
     type: "bar",
     data: {
       labels: labels,
@@ -224,7 +246,7 @@ async function loadWindDirection() {
   const labels = [];
   const dataset = [];
   await fetch(
-    "https://webapi19sa-1.course.tamk.cloud/v1/weather/wind_direction"
+    `https://webapi19sa-1.course.tamk.cloud/v1/weather/wind_direction/${interval}`
   )
     .then((response) => response.json())
     .then((data) => {
@@ -246,7 +268,8 @@ async function loadWindDirection() {
       });
     });
   const windDirectionChart = document.getElementById("wind-direction-chart");
-  new Chart(windDirectionChart, {
+  if(windDirectionCanva) windDirectionCanva.destroy()
+  windDirectionCanva = new Chart(windDirectionChart, {
     type: "bar",
     data: {
       labels: labels,
@@ -264,10 +287,11 @@ async function loadWindDirection() {
   });
 }
 function loadLight() {
+  
   lightTableBody.innerHTML = "";
   const labels = [];
   const dataset = [];
-  fetch("https://webapi19sa-1.course.tamk.cloud/v1/weather/light")
+  fetch(`https://webapi19sa-1.course.tamk.cloud/v1/weather/light/${interval}`)
     .then((response) => response.json())
     .then((data) => {
       data.map((item, index) => {
@@ -287,8 +311,11 @@ function loadLight() {
         dataset.push(light);
       });
     });
+ 
   const lightChart = document.getElementById("light-chart");
-  new Chart(lightChart, {
+  if(lightCanva) lightCanva.destroy()
+
+  lightCanva = new Chart(lightChart, {
     type: "bar",
     data: {
       labels: labels,
@@ -327,4 +354,44 @@ refreshButtons.forEach((button) => {
         break;
     }
   });
+});
+
+const intervalSelect = document.getElementById("table-filter");
+
+intervalSelect.addEventListener("change", function () {
+  const option = intervalSelect.value;
+  switch (option) {
+    case "now":
+      interval = "25";
+      break;
+    case "24-hours":
+      interval = "24h";
+      break;
+    case "48-hours":
+      interval = "48h";
+      break;
+    case "72-hours":
+      interval = "72h";
+      break;
+    case "1-week":
+      interval = "1w";
+      break;
+  }
+  switch (currentPage) {
+    case "temperature":
+      loadTemperature();
+      break;
+    case "wind-speed":
+      loadWindSpeed();
+      break;
+    case "rain":
+      loadRain();
+      break;
+    case "wind-direction":
+      loadWindDirection();
+      break;
+    case "light":
+      loadLight();
+      break;
+  }
 });

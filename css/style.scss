@@ -249,6 +249,17 @@ h1 {
   a {
     color: rgb(144, 144, 218);
   }
+
+  .rights {
+    margin-left:3rem;
+    color:var(--light-color);
+    h3, p {
+      padding:0.5rem;
+    }
+    p:last-child {
+      margin-bottom:3rem;
+    }
+  }
 }
 
 .capitalize {

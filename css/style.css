@@ -219,6 +219,16 @@ h1 {
 .authors-info a {
   color: rgb(144, 144, 218);
 }
+.authors-info .rights {
+  margin-left: 3rem;
+  color: var(--light-color);
+}
+.authors-info .rights h3, .authors-info .rights p {
+  padding: 0.5rem;
+}
+.authors-info .rights p:last-child {
+  margin-bottom: 3rem;
+}
 
 .capitalize {
   text-transform: capitalize;

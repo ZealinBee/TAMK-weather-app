@@ -8,13 +8,14 @@ const windDirectionTableBody = document.querySelector(
   ".wind-direction-table-body"
 );
 const lightTableBody = document.querySelector(".light-table-body");
-let interval = "25";
+let interval = "20";
 let currentPage = "main-page";
-let tempCanva
-let windSpeedCanva
-let rainCanva
-let windDirectionCanva
-let lightCanva
+let tempCanva;
+let windSpeedCanva;
+let rainCanva;
+let windDirectionCanva;
+let lightCanva;
+const intervalSelect = document.getElementById("table-filter");
 
 addEventListener("load", loadMainWeather);
 
@@ -57,11 +58,24 @@ function loadMainWeather() {
         const date = item.date_time.slice(0, 10);
         const time = item.date_time.slice(11, 19);
         let type = Object.keys(item.data).join();
-        const value = Object.values(item.data);
+        const value = Object.values(item.data)[0].toFixed(2);
+
         index += 1;
         if (index < 10) index = `0${index}`;
         if (type === "Air_pres_1") {
           type = "Air pressure";
+        }
+        if (type === "BMP_temp_1") {
+          type = "temperature";
+        }
+        if (type === "DHT11_hum_1") {
+          type = "humidity";
+        }
+        if (type === "DHT11_temp_1") {
+          type = "temperature";
+        }
+        if (type === "DS1820_temp_1") {
+          type = "temperature";
         }
         if (type.includes("_")) {
           type = type.replace("_", " ");
@@ -82,7 +96,7 @@ function loadMainWeather() {
 function showPage(page) {
   const pages = document.querySelectorAll(".page");
   const filter = document.querySelector("#table-filter");
-  
+
   filter.style.display = "block";
   pages.forEach((item) => {
     item.style.display = "none";
@@ -105,6 +119,7 @@ function showPage(page) {
   } else if (page === "main-page") {
     filter.style.display = "none";
   }
+  intervalSelect.value = "now";
 }
 
 function loadTemperature() {
@@ -133,7 +148,7 @@ function loadTemperature() {
         labels.push(time);
         dataset.push(temperature);
       });
-      if(tempCanva) tempCanva.destroy()
+      if (tempCanva) tempCanva.destroy();
       let temperatureChart = document.getElementById("temperature-chart");
       tempCanva = new Chart(temperatureChart, {
         type: "bar",
@@ -152,6 +167,7 @@ function loadTemperature() {
         options: defaultChartOptions,
       });
     });
+  interval = "20";
 }
 function loadWindSpeed() {
   windSpeedTableBody.innerHTML = "";
@@ -165,7 +181,7 @@ function loadWindSpeed() {
       data.map((item, index) => {
         const date = item.date_time.slice(0, 10);
         const time = item.date_time.slice(11, 19);
-        const wind_speed = Object.values(item.wind_speed);
+        const wind_speed = Object.values(item.wind_speed).join("");
         index += 1;
         if (index < 10) index = `0${index}`;
         const tr = `
@@ -180,7 +196,7 @@ function loadWindSpeed() {
       });
     });
   const windSpeedChart = document.getElementById("wind-speed-chart");
-  if(windSpeedCanva) windSpeedCanva.destroy()
+  if (windSpeedCanva) windSpeedCanva.destroy();
   windSpeedCanva = new Chart(windSpeedChart, {
     type: "bar",
     data: {
@@ -197,6 +213,7 @@ function loadWindSpeed() {
     },
     options: defaultChartOptions,
   });
+  interval = "20";
 }
 function loadRain() {
   rainTableBody.innerHTML = "";
@@ -223,7 +240,7 @@ function loadRain() {
       });
     });
   const rainChart = document.getElementById("rain-chart");
-  if(rainCanva) rainCanva.destroy()
+  if (rainCanva) rainCanva.destroy();
   rainCanva = new Chart(rainChart, {
     type: "bar",
     data: {
@@ -240,6 +257,7 @@ function loadRain() {
     },
     options: defaultChartOptions,
   });
+  interval = "20";
 }
 async function loadWindDirection() {
   windDirectionTableBody.innerHTML = "";
@@ -268,7 +286,7 @@ async function loadWindDirection() {
       });
     });
   const windDirectionChart = document.getElementById("wind-direction-chart");
-  if(windDirectionCanva) windDirectionCanva.destroy()
+  if (windDirectionCanva) windDirectionCanva.destroy();
   windDirectionCanva = new Chart(windDirectionChart, {
     type: "bar",
     data: {
@@ -285,9 +303,9 @@ async function loadWindDirection() {
     },
     options: defaultChartOptions,
   });
+  interval = "20";
 }
 function loadLight() {
-  
   lightTableBody.innerHTML = "";
   const labels = [];
   const dataset = [];
@@ -311,9 +329,9 @@ function loadLight() {
         dataset.push(light);
       });
     });
- 
+
   const lightChart = document.getElementById("light-chart");
-  if(lightCanva) lightCanva.destroy()
+  if (lightCanva) lightCanva.destroy();
 
   lightCanva = new Chart(lightChart, {
     type: "bar",
@@ -331,6 +349,7 @@ function loadLight() {
     },
     options: defaultChartOptions,
   });
+  interval = "20";
 }
 
 refreshButtons.forEach((button) => {
@@ -356,13 +375,15 @@ refreshButtons.forEach((button) => {
   });
 });
 
-const intervalSelect = document.getElementById("table-filter");
-
 intervalSelect.addEventListener("change", function () {
   const option = intervalSelect.value;
   switch (option) {
     case "now":
-      interval = "25";
+      if (currentPage === "temperature" || currentPage === "wind-speed") {
+        interval = "20";
+      } else if (currentPage === "rain" || currentPage === "wind-direction") {
+        interval = "25";
+      }
       break;
     case "24-hours":
       interval = "24h";

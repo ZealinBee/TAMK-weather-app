@@ -117,11 +117,18 @@ table {
   min-width: 400px;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.35);
   margin: 1rem auto;
+  text-align: center;
 }
 table thead tr {
   background-color: var(--accent-color);
   color: #ffffff;
   text-align: left;
+}
+table .radius-top-left {
+  border-top-left-radius: 0.5rem;
+}
+table .radius-top-right {
+  border-top-right-radius: 0.5rem;
 }
 table th,
 table td {
